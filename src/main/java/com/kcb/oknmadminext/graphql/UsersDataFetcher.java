@@ -1,5 +1,6 @@
 package com.kcb.oknmadminext.graphql;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.kcb.oknmadminext.dao.UserDAO;
@@ -10,7 +11,8 @@ import graphql.schema.DataFetchingEnvironment;
 
 @Component
 public class UsersDataFetcher implements DataFetcher<UserVO>{
-
+	
+	@Autowired
 	private UserDAO userDAO;
 	
 	

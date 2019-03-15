@@ -12,7 +12,7 @@ import com.kcb.oknmadminext.graphql.UserUseCase;
 import graphql.ExecutionResult;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/graphql")
 public class UserController {
 	private final UserUseCase userUseCase;
 
