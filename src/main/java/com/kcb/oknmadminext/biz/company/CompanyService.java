@@ -6,11 +6,14 @@ import org.springframework.stereotype.Service;
 
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLQuery;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class CompanyService {
+	public CompanyService(CompanyDAO companyDAO) {
+		super();
+		this.companyDAO = companyDAO;
+	}
+
 	private final CompanyDAO companyDAO;
 	
 	@GraphQLQuery(name = "companies")

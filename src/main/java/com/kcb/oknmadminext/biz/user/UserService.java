@@ -6,13 +6,16 @@ import org.springframework.stereotype.Service;
 
 import io.leangen.graphql.annotations.GraphQLArgument;
 import io.leangen.graphql.annotations.GraphQLQuery;
-import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class UserService {
 	private final UserDAO userDAO;
 	
+	public UserService(UserDAO userDAO) {
+		super();
+		this.userDAO = userDAO;
+	}
+
 	@GraphQLQuery(name = "users")
 	public List<User> getUsers() {
 		return userDAO.selectUserAll();

@@ -1,18 +1,23 @@
 package com.kcb.oknmadminext.biz.user;
 
 import io.leangen.graphql.annotations.GraphQLQuery;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@ToString @EqualsAndHashCode
+@ToString
 public class User {
+	public User(String id, String name, String passwd) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.passwd = passwd;
+	}
+
 	@GraphQLQuery(name = "id", description = "A user's id")
 	private String id;
 	@GraphQLQuery(name = "name", description = "A user's name")
