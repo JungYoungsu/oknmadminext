@@ -9,20 +9,20 @@ import io.leangen.graphql.annotations.GraphQLQuery;
 
 @Service
 public class UserService {
-	private final UserDAO userDAO;
+	private final UserRepository userDAO;
 	
-	public UserService(UserDAO userDAO) {
+	public UserService(UserRepository userDAO) {
 		super();
 		this.userDAO = userDAO;
 	}
 
 	@GraphQLQuery(name = "users")
 	public List<User> getUsers() {
-		return userDAO.selectUserAll();
+		return userDAO.findAll();
 	}
 	
 	@GraphQLQuery(name = "user")
 	public User getUser(@GraphQLArgument(name = "id") String id) {
-		return userDAO.selectUserById(id);
+		return userDAO.findOne(id);
 	}
 }

@@ -9,25 +9,25 @@ import io.leangen.graphql.annotations.GraphQLQuery;
 
 @Service
 public class CompanyService {
-	public CompanyService(CompanyDAO companyDAO) {
+	public CompanyService(CompanyRepository companyRepo) {
 		super();
-		this.companyDAO = companyDAO;
+		this.companyRepo = companyRepo;
 	}
 
-	private final CompanyDAO companyDAO;
-	
-	@GraphQLQuery(name = "companies")
-	public List<Company> getCompanies() {
-		return companyDAO.selectCompanyAll();
-	}
+	private final CompanyRepository companyRepo;
 	
 	@GraphQLQuery(name = "company")
 	public Company getComapnyByCpcd(@GraphQLArgument(name = "cpcd") String cpcd) {
-		return companyDAO.selectCompanyByCpcd(cpcd);
+		return companyRepo.findOne(cpcd);
 	}
 	
-	@GraphQLQuery(name = "company")
-	public Company getComapnyByName(@GraphQLArgument(name = "name") String name) {
-		return companyDAO.selectCompanyByName(name);
+	@GraphQLQuery(name = "companies")
+	public List<Company> getComapaniesByName(@GraphQLArgument(name = "name") String name) {
+		return companyRepo.findByNameContainingIgnoreCase(name);
+	}
+	
+	@GraphQLQuery(name = "companies")
+	public List<Company> getCompanies() {
+		return companyRepo.findAll();
 	}
 }
