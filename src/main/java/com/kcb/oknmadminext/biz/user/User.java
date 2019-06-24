@@ -16,7 +16,6 @@ import lombok.ToString;
 @Entity
 public class User {
 	public User(String id, String name, String passwd) {
-		super();
 		this.id = id;
 		this.name = name;
 		this.passwd = passwd;

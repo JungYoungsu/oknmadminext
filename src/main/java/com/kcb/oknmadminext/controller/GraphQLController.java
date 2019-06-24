@@ -19,8 +19,6 @@ import graphql.ExecutionResult;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
 import io.leangen.graphql.GraphQLSchemaGenerator;
-import io.leangen.graphql.metadata.strategy.query.AnnotatedResolverBuilder;
-import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapperFactory;
 
 
 @CrossOrigin(maxAge = 3600)
@@ -28,15 +26,11 @@ import io.leangen.graphql.metadata.strategy.value.jackson.JacksonValueMapperFact
 public class GraphQLController {
 	private final GraphQL graphQL;
 	
-	public GraphQLController(UserService userService, 
-							CompanyService companyService) {
+	public GraphQLController(UserService userService, CompanyService companyService) {
         GraphQLSchema schema = new GraphQLSchemaGenerator()
-                .withResolverBuilders(
-                        //Resolve by annotations
-                        new AnnotatedResolverBuilder())
+        		.withBasePackages("com.kcb.oknmadminext")
                 .withOperationsFromSingleton(userService)
                 .withOperationsFromSingleton(companyService)
-                .withValueMapperFactory(new JacksonValueMapperFactory())
                 .generate();
         graphQL = GraphQL.newGraphQL(schema).build();
     }

@@ -10,7 +10,6 @@ import io.leangen.graphql.annotations.GraphQLQuery;
 @Service
 public class CompanyService {
 	public CompanyService(CompanyRepository companyRepo) {
-		super();
 		this.companyRepo = companyRepo;
 	}
 

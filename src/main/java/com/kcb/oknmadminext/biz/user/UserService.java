@@ -12,7 +12,6 @@ public class UserService {
 	private final UserRepository userDAO;
 	
 	public UserService(UserRepository userDAO) {
-		super();
 		this.userDAO = userDAO;
 	}
 
